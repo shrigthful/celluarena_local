@@ -1,0 +1,21 @@
+
+services:
+  referee:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: codingame
+    container_name: cellularena        
+    ports:
+        - "8888:8888"
+    volumes:
+        - cgvolcell:/cellularena
+
+volumes:
+  cgvolcell:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './'
+

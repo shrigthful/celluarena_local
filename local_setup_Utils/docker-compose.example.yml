@@ -1,0 +1,21 @@
+
+services:
+  referee:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: olymbits
+    container_name: olymbits        
+    ports:
+        - "8888:8888"
+    volumes:
+        - cgvol:/olymbits
+
+volumes:
+  cgvol:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: './'
+

@@ -1,0 +1,59 @@
+1 - clone the referee source (game source code)
+
+*the local referee is setup to be compiled as a library.
+*we need to make it complie as an executable by add adding the main function.
+* and we need to give this main the ability to get input from command line.
+     ( when we execute this program we should be able to pass the playes and other other information as argument
+        and the main shuld parce them before running the reffere)
+
+to do this we need to:
+
+2 - update the pom.xml file (pom.xml == config in maven)
+    add the configrations from pom_extra.xml as stated by the comments
+
+3 - add the main function in the project (CommandLineInterface.java file)
+in the same pth as stated in pom.xml (the code u added on step to be exact) + './src/main/java/' at begining
+exmple: 
+    <mainClass>com.codingame.gameengine.runner.CommandLineInterface</mainClass>
+    path weill be :
+    ./src/main/java/com/codingame/gameengine/runner/CommandLineInterface.java
+
+4- add the Renderer.java file at ./src/main/java/com/codingame/gameengine/runner/Renderer.java;
+    (this will create the image graphics for the game)
+
+
+5- at the file /SummerChallenge2024Olymbits/src/main/resources/package.json
+(replace SummerChallenge2024Olymbits with the repo name)
+add "build" : tsc  to scripts
+like this :
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc -w",
+    "build": "tsc" << add this (with the ',' ofc)
+  },
+
+now the referee should compile as a executabe.
+to compile we need:
+    install Java 17 / sudo apt install openjdk-17-jdk
+    install maven   / sudo apt install maven
+    install npm    / sudo apt install nodejs npm
+     note (u can use docker or a VM if u dont have acces to sudo)
+
+and than we staret compiling with (from root of the cg repo):
+    * cd src/main/resources
+    * npm install (dont use audit fix leave the vunrabity as they are)
+    * npm run build
+
+than at the root of the repo (where pom.xml is) we run;
+    *mvn package
+
+the executable will be created at
+./target
+with the name 
+spring-2024-olympics-1.0-SNAPSHOT.jar
+as stated in pom.xml file in 
+    <artifactId>spring-2024-olympics</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+and to execut we run ;
+    java -jar spring-2024-olympics-1.0-SNAPSHOT.jar
